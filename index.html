@@ -5,7 +5,6 @@
   <title>福岡市立元岡中学校 定期演奏会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ===== Artist Style CSS ===== -->
   <style>
     body {
       margin: 0;
@@ -15,7 +14,8 @@
     }
     .hero {
       height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba');
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1519681393784-d120267933ba');
       background-size: cover;
       background-position: center;
       display: flex;
@@ -48,9 +48,6 @@
     .about p {
       line-height: 1.9;
       font-size: 17px;
-    }
-    form {
-      margin-top: 30px;
     }
     label {
       display: block;
@@ -96,13 +93,11 @@
 </head>
 <body>
 
-  <!-- HERO -->
   <div class="hero">
     <h1>福岡市立元岡中学校<br>定期演奏会</h1>
     <p>音楽で、心をひとつに。</p>
   </div>
 
-  <!-- ABOUT -->
   <section class="about">
     <h2>ABOUT THE CONCERT（演奏会について）</h2>
     <p>
@@ -112,13 +107,14 @@
     </p>
   </section>
 
-  <!-- SURVEY -->
   <section id="formArea">
     <h2>SURVEY（アンケート）</h2>
+
     <form id="surveyForm">
       <p style="opacity:0.8;">※ 以下の項目にご協力ください / Please answer the following questions.</p>
-      <label>年代 / Age Group</label>
-      <select required>
+
+      <label for="age">年代 / Age Group</label>
+      <select id="age" required>
         <option value="">選択してください</option>
         <option>10代</option>
         <option>20代</option>
@@ -127,8 +123,8 @@
         <option>50代以上</option>
       </select>
 
-      <label>演奏会の満足度 / Satisfaction with the concert</label>
-      <select required>
+      <label for="satisfaction">演奏会の満足度 / Satisfaction with the concert</label>
+      <select id="satisfaction" required>
         <option value="">選択してください</option>
         <option>とても満足</option>
         <option>満足</option>
@@ -137,11 +133,14 @@
         <option>不満</option>
       </select>
 
-      <label>ご感想・ご意見 / Comments or Feedback</label>
-      <textarea rows="5" placeholder="自由にご記入ください / Please write freely"></textarea>
+      <label for="comment">ご感想・ご意見 / Comments or Feedback</label>
+      <textarea id="comment" rows="5" placeholder="自由にご記入ください / Please write freely"></textarea>
 
-      <label>本日の演奏会は何でお知りになりましたか？<br><span style="font-weight:normal;">How did you hear about this concert?</span></label>
-      <select required>
+      <label for="source">
+        本日の演奏会は何でお知りになりましたか？<br>
+        <span style="font-weight:normal;">How did you hear about this concert?</span>
+      </label>
+      <select id="source" required>
         <option value="">選択してください / Please select</option>
         <option>学校からの案内</option>
         <option>団員からの案内</option>
@@ -152,8 +151,11 @@
         <option>その他</option>
       </select>
 
-      <label>お住まいの地域<br><span style="font-weight:normal;">Area where you live</span></label>
-      <select required>
+      <label for="area">
+        お住まいの地域<br>
+        <span style="font-weight:normal;">Area where you live</span>
+      </label>
+      <select id="area" required>
         <option value="">選択してください / Please select</option>
         <option>福岡市西区</option>
         <option>福岡市内（西区以外）</option>
@@ -173,20 +175,21 @@
     <p>© 福岡市立元岡中学校 吹奏楽部（ビジュアルプランニング）</p>
   </footer>
 
-  <!-- JavaScript -->
 <script>
-const form = document.getElementById('surveyForm');
-const complete = document.getElementById('completeMessage');
+const form = document.getElementById("surveyForm");
+const complete = document.getElementById("completeMessage");
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
+  form.querySelector("button").disabled = true;
+
   const data = {
-    age: form.querySelectorAll("select")[0].value,
-    satisfaction: form.querySelectorAll("select")[1].value,
-    comment: form.querySelector("textarea").value,
-    source: form.querySelectorAll("select")[2].value,
-    area: form.querySelectorAll("select")[3].value
+    age: document.getElementById("age").value,
+    satisfaction: document.getElementById("satisfaction").value,
+    comment: document.getElementById("comment").value,
+    source: document.getElementById("source").value,
+    area: document.getElementById("area").value
   };
 
   fetch("https://script.google.com/macros/s/AKfycbw1vWIBZ9qtQhYniv2Gc8dEVSpHxsm47OMBz5PG9smybobQXzgTB8gEmtgmrXA023vb/exec", {
@@ -196,7 +199,6 @@ form.addEventListener("submit", function(e) {
     },
     body: JSON.stringify(data)
   })
-  .then(response => response.text())
   .then(() => {
     form.style.display = "none";
     complete.style.display = "block";
@@ -204,8 +206,10 @@ form.addEventListener("submit", function(e) {
   .catch(err => {
     alert("送信に失敗しました");
     console.error(err);
+    form.querySelector("button").disabled = false;
   });
 });
 </script>
+
 </body>
 </html>
