@@ -125,6 +125,15 @@ footer {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+    * {
+  box-sizing: border-box;
+}
+
+#surveyForm {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 </style>
 
 </head>
@@ -145,10 +154,9 @@ footer {
     </p>
   </section>
 
-  <form id="surveyForm" action="javascript:void(0);">
+  <form id="surveyForm">
     <h2>アンケート(SURVEY)</h2>
 
-    <form id="surveyForm">
       <p style="opacity:0.8;">※ 以下の項目にご協力ください / Please answer the following questions.</p>
 
       <label for="age">年代 / Age Group</label>
