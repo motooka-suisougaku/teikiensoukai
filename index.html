@@ -236,30 +236,12 @@ const form = document.getElementById("surveyForm");
 const complete = document.getElementById("completeMessage");
 const loading = document.getElementById("loading");
 
-  .then(() => {
-  loading.style.display = "none";
-  form.style.display = "none";
-  complete.style.display = "block";
-
-  // ★ 追加：完了メッセージ位置へスクロール
-  complete.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-})
-
-  .then(() => {
-  loading.style.display = "none";
-  form.style.display = "none";
-  complete.style.display = "block";
-  complete.scrollIntoView({ behavior: "smooth", block: "start" });
-})
-  
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
   form.querySelector("button").disabled = true;
- loading.style.display = "block";
+  loading.style.display = "block";
+
   const data = {
     age: document.getElementById("age").value,
     satisfaction: document.getElementById("satisfaction").value,
@@ -268,8 +250,6 @@ form.addEventListener("submit", function(e) {
     area: document.getElementById("area").value,
     role: document.getElementById("role").value
   };
-
-  //console.log("送信データ", data);
 
   fetch("https://script.google.com/macros/s/AKfycbyrbazpfo2jzMlBEKsDo4URiXe-mDs1UST-WBQBTyEfZJPLSOGNRWiadwNuiFXPKcLg/exec", {
     method: "POST",
@@ -283,6 +263,12 @@ form.addEventListener("submit", function(e) {
     loading.style.display = "none";
     form.style.display = "none";
     complete.style.display = "block";
+
+    // ★ 完了メッセージを画面中央に表示
+    complete.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
   })
   .catch(err => {
     loading.style.display = "none";
