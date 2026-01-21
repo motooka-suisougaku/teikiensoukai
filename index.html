@@ -240,6 +240,18 @@ const loading = document.getElementById("loading");
   loading.style.display = "none";
   form.style.display = "none";
   complete.style.display = "block";
+
+  // ★ 追加：完了メッセージ位置へスクロール
+  complete.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+})
+
+  .then(() => {
+  loading.style.display = "none";
+  form.style.display = "none";
+  complete.style.display = "block";
   complete.scrollIntoView({ behavior: "smooth", block: "start" });
 })
   
