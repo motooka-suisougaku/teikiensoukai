@@ -237,18 +237,14 @@
 
 <script>
 const form = document.getElementById("surveyForm");
-const complete = document.getElementById("completeMessage");
 const loading = document.getElementById("loading");
+const complete = document.getElementById("completeMessage");
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
   form.querySelector("button").disabled = true;
   loading.style.display = "block";
-
-  if (!navigator.onLine) {
-    alert("インターネットに接続されていません。\n通信環境をご確認ください。");
-    return;
 
   const data = {
     name: document.getElementById("name").value,
@@ -262,18 +258,20 @@ form.addEventListener("submit", function(e) {
 
   fetch("https://script.google.com/macros/s/AKfycbzAd6JzE6Iw5zvo57-IWQchI7MWlVEQuGFZuMXCqr64AWg_9p4_wPmkbuBnvj5YtPwK/exec", {
     method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   })
-  .then(() => {
+  .then(res => {
+    if (!res.ok) throw new Error("network error");
+    return res.json();
+  })
+  .then(result => {
+    if (result.status !== "ok") throw new Error("server error");
+
     loading.style.display = "none";
     form.style.display = "none";
     complete.style.display = "block";
 
-    // ★ 完了メッセージを画面中央に表示
     complete.scrollIntoView({
       behavior: "smooth",
       block: "center"
@@ -286,6 +284,7 @@ form.addEventListener("submit", function(e) {
     form.querySelector("button").disabled = false;
   });
 });
+
 </script>
 
 </body>
