@@ -278,7 +278,7 @@ form.addEventListener("submit", function(e) {
   })
   .catch(err => {
     loading.style.display = "none";
-    alert("送信に失敗しました");
+    alert("送信に失敗しました。インターネットが不安定または接続されていない可能性があります");
     console.error(err);
     form.querySelector("button").disabled = false;
   });
