@@ -276,7 +276,7 @@ fetch("https://script.google.com/macros/s/AKfycbz1jfpK1_ryITjTeS3V-EllEzMrI-yxQC
 })
 .catch(() => {
   loading.style.display = "none";
-  alert("送信に失敗しました");
+  alert("送信に失敗しました。通信環境が不安定または接続されていない可能性があります。確認してから回答を送信ボタンを押してください");
   form.querySelector("button").disabled = false;
 });
 });
