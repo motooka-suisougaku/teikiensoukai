@@ -277,11 +277,14 @@ button {
 
     <form id="surveyForm">
       <p style="opacity:0.8;">※ 以下の項目にご協力ください / Please answer the following questions.</p>
-      <p style="opacity:0.8;">必ず回答を終えてた後、「回答を送信」ボタンを押してください / Please make sure to press the "Send" button after completing all questions.
-      <label for="name">差し支えなければ、お名前ご記入ください / If you don’t mind, please enter your name</label>
+      <p style="opacity:0.8;">必ず回答を終えてた後、「回答を送信」ボタンを押してください
+      <br>Please make sure to press the "Send" button after completing all questions.
+      <label for="name">差し支えなければ、お名前ご記入ください
+      <span style="font-weight:normal;">If you don’t mind, please enter your name</span>
       <input type="text" id="name" placeholder="例：元岡 太郎">
 
-      <label for="age">年代 / Age Group</label>
+      <label for="age">年代<br>
+      <span style="font-weight:normal;">Age Group</span>
       <select id="age" required>
         <option value="">選択してください</option>
         <option>10代</option>
@@ -292,7 +295,8 @@ button {
         <option>60代以上</option>
       </select>
 
-      <label for="satisfaction">演奏会の満足度 / Satisfaction with the concert</label>
+      <label for="satisfaction">演奏会の満足度<br>
+      <span style="font-weight:normal;">Satisfaction with the concert</span>
       <select id="satisfaction" required>
         <option value="">選択してください</option>
         <option>とても満足</option>
@@ -302,7 +306,8 @@ button {
         <option>不満</option>
       </select>
 
-      <label for="comment">ご感想・ご意見 / Comments or Feedback</label>
+      <label for="comment">ご感想・ご意見<br>
+      <span style="font-weight:normal;">Comments or Feedback</span>
       <textarea id="comment" rows="5" placeholder="自由にご記入ください / Please write freely"></textarea>
 
       <label for="source">
