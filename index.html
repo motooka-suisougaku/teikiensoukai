@@ -117,6 +117,33 @@
   margin-top: 20px;
   opacity: 0.9;
 }
+    /* 背景フェードイン用 */
+.hero {
+  opacity: 0;
+  animation: heroFade 1.8s ease-out forwards;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+    /* スクロール出現アニメーション */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
   </style>
 </head>
 <body>
