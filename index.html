@@ -420,11 +420,16 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 targets.forEach(target => observer.observe(target));
-    document.querySelector(".scroll-indicator").addEventListener("click", function(e){
-  e.preventDefault();
-  document.querySelector("#formArea").scrollIntoView({
-    behavior: "smooth"
+const scrollBtn = document.querySelector(".scroll-indicator");
+
+if (scrollBtn) {
+  scrollBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    document.querySelector("#formArea").scrollIntoView({
+      behavior: "smooth"
+    });
   });
+}
 </script>
 
 </body>
